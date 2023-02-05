@@ -44,10 +44,31 @@
     font-size: 2em;
     font-weight: bold;
     color: brown;
-    margin-left: 30px;
-
-
+    border:3px solid darkblue;
+    padding:  2px;
+ 
 } 
+.container{
+    display:flex;
+    justify-content: space-evenly;
+}
+.icon {
+
+ 
+ border: 3px solid black; 
+ padding :4px;
+
+}
+.pp {
+    font-size: 2em;
+    font-weight: bold;
+    color:indigo;
+    padding: 2px;
+  
+   border:3px solid Green;
+
+
+}
 .dot {
     width: 8px;
     height: 8px;

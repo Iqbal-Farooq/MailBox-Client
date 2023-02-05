@@ -3,10 +3,9 @@
 import React, { Fragment } from 'react';
 
 import { useParams } from 'react-router-dom';
-import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { inboxActions } from "../Redux/Inbox";
+
+import {  useSelector } from "react-redux";
+
 import classes  from './Rec.module.css';
 
 
@@ -14,10 +13,7 @@ const ReadSent = () => {
     const {id}=useParams();
     console.log('parms',id)
     const mails=useSelector(state=>state.inbox.sentemails)
-    const Email=localStorage.getItem('email')
-    const myEmail=Email.replace("@",'').replace('.','');
-
-
+  
     const singleMail=mails.filter((item)=>item.id===id);
     console.log('single email',singleMail)
     const message=singleMail[0]

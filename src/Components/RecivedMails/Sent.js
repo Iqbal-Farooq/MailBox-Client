@@ -56,7 +56,7 @@ const SentBox = () => {
             <span className={classes.span}>
                 message
             </span>
-            <span>{item.id}</span>
+          
             </li></NavLink>
                 ))
 

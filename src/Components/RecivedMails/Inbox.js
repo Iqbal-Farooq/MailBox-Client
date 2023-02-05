@@ -11,6 +11,7 @@ import Welcome from "../MailComponents/Welcome";
 
 const ReceiveEmails = () => {
   const[md,setMd]=useState([]);
+    const [reRender,setreRender]=useState(true);
    
   const [singleEmail, setSingleEmail] = useState(false);
   const emails = useSelector((state) => state.inbox.emails);
@@ -32,12 +33,12 @@ const ReceiveEmails = () => {
          try {
         let res =await axios.get(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}inbox.json`);
         let mailData=await res.data;
-        console.log(':@@@@')
-        console.log(mailData)
+        // console.log(':@@@@')
+        // console.log(mailData)
          for(let key in mailData){
           if(mailData[key].dot===true){
               noOfUnread++}
-          console.log(key)
+          // console.log(key)
           console.log(mailData[key].from)
                 data=[{id:key,...mailData[key]},...data]
             }
@@ -52,10 +53,31 @@ const ReceiveEmails = () => {
     };
 
 
-  useEffect(() => {
+useEffect(()=>{
+   let interval= setInterval(()=>{
+     setreRender((prev)=>!prev);
+       console.log("CAKL")
+
+    },5000);
+    return ()=>{ clearInterval(interval);
+
+    }
+
+},[reRender]);
+
+useEffect(()=>{
+  GetData()
+},[])
+  
+
+    // useEffect(()=>{
+    //   GetData();
+    // },[reRender])
    
-    GetData();
-  }, []);
+      
+    
+   
+  
 
    
 
@@ -73,12 +95,18 @@ const ReceiveEmails = () => {
   return (
     <>
     <Welcome />
-    <p>unread {unred}</p>
+   
     <div className={classes.wrapper1}>
     <div className={classes.wrapper}> 
      
       <div className={classes.input}>
-      <p className={classes.p}>Inbox</p>
+      <div className={classes.container}> 
+       <p className={classes.p}>Inbox</p>
+      <p className={classes.pp}>unRead msgs: {unred}</p>
+      <p className={classes.icon}>Ⓜ️</p>
+
+     
+      </div>
         <ul>
           {emails!==null && emails.map((email) => {
             return (
