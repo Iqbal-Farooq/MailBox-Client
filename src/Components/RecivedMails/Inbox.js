@@ -30,7 +30,7 @@ const ReceiveEmails = () => {
    
      async function GetData(){
          try {
-        let res =await axios.get(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}Data.json`);
+        let res =await axios.get(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}inbox.json`);
         let mailData=await res.data;
         console.log(':@@@@')
         console.log(mailData)
@@ -61,7 +61,7 @@ const ReceiveEmails = () => {
 
   async function DeleteHandler(id){
     console.log(id);
-    const res= await axios.delete(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}Data/${id}.json`);
+    const res= await axios.delete(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}inbox/${id}.json`);
     let data=await res;
     console.log(data);
     

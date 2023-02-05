@@ -10,11 +10,10 @@ import { inboxActions } from "../Redux/Inbox";
 import classes  from './Rec.module.css';
 
 
-
-const ReadMsg = () => {
+const ReadSent = () => {
     const {id}=useParams();
     console.log('parms',id)
-    const mails=useSelector(state=>state.inbox.emails)
+    const mails=useSelector(state=>state.inbox.sentemails)
     const Email=localStorage.getItem('email')
     const myEmail=Email.replace("@",'').replace('.','');
 
@@ -24,27 +23,6 @@ const ReadMsg = () => {
     const message=singleMail[0]
     console.log('message',message);
     
-
-    
-     useEffect(()=>{
-      const fetchData=async ()=>{
-
-        const response=await fetch(`https://mailbox-cff96-default-rtdb.firebaseio.com/${myEmail}inbox/${id}.json`,{
-          method:'PATCH',
-          body:JSON.stringify({
-            dot:false
-          }),
-          headers:{
-            'Content-Type':'application/json'
-          }
-        })
-        const data=await response;
-        console.log('ruk   gh')
-        console.log(data);
-      }
-      fetchData();
-    },[])
-
   return (
     <Fragment>
     <div className={classes.wrapper1}> 
@@ -52,8 +30,8 @@ const ReadMsg = () => {
     
     <div className={classes.input}>   
    
-     <div className={classes.span}><span>From : {message.from} </span> 
-     <span>Subject : {message.subject} </span> </div>
+     <div className={classes.span}><span>To : {message.from} </span> 
+     <span>Subject : {message.subject}  </span> </div>
    
     <div className={classes.message}>Message : {message.body} </div>
     </div> </div></div>
@@ -62,4 +40,4 @@ const ReadMsg = () => {
   )
 }
 
-export default ReadMsg;
+export default  ReadSent;

@@ -34,7 +34,7 @@ const ComposeMail = () => {
      try {
       console.log(toFormattedEmail)
       const response = await axios.post(
-        `https://mailbox-cff96-default-rtdb.firebaseio.com/${toFormattedEmail}Data.json`,mailData);
+        `https://mailbox-cff96-default-rtdb.firebaseio.com/${toFormattedEmail}inbox.json`,mailData);
         let data=await response
 
          console.log(data);
@@ -42,15 +42,19 @@ const ComposeMail = () => {
       console.log(err);
     }
 
-    // try{
-    //  const response = await axios.post(
-    //     `https://mailbox-cff96-default-rtdb.firebaseio.com/${newMAil}Data.json`,mailData);
-    //     let data=await response
+    try{
+     const response = await axios.post(
+        `https://mailbox-cff96-default-rtdb.firebaseio.com/${newMAil}sentbox.json`,{
+          to:toFormattedEmail ,
+      subject: enteredSubjectref,
+      body: bodyText,
+        });
+        let data=await response
 
-    //      console.log(data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+         console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
 
 
    

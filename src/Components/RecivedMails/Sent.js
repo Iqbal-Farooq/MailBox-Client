@@ -18,7 +18,7 @@ const SentBox = () => {
     useEffect(()=>{
         const fetchDaata=async()=>{
            try{
-     const response = await axios.get(`https://mailbox-cff96-default-rtdb.firebaseio.com/${myEmail}Data.json`);
+     const response = await axios.get(`https://mailbox-cff96-default-rtdb.firebaseio.com/${myEmail}sentbox.json`);
         
          let mailData=await response.data;
         console.log(':sent box-')
@@ -50,12 +50,13 @@ const SentBox = () => {
             {
 
                 mailInInbox.map((item)=>(
-                 <NavLink to={`/Inbox/${item.id}`}>   <li className={classes.input} key={item.id}>
+                 <NavLink to={`/Sent/${item.id}`}>   <li className={classes.input} key={item.id}>
                     <span className={classes.span}>To :- {item.to}</span>
             <span className={classes.span} >{item.subject}</span>
             <span className={classes.span}>
                 message
             </span>
+            <span>{item.id}</span>
             </li></NavLink>
                 ))
 

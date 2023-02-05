@@ -9,6 +9,7 @@ import ReadMsg from "./Components/RecivedMails/Rec";
 import SentBox from "./Components/RecivedMails/Sent";
 import { inboxActions } from "./Components/Redux/Inbox";
 import ComposeMail from "./Components/ComposeEmail/Compose";
+import ReadSent from "./Components/RecivedMails/SentMAilsRead";
 
 
 
@@ -20,7 +21,7 @@ function App() {
   const Number=useSelector(state=>state.inbox.unRead);
   console.log("LOHIM",isAuth)
   return (<>  
-  {/* {isAuth &&<Link to='/Mailbox'> Mailbox</Link>} */}
+  
   
   <Routes> 
   <Route path="/Signup" element={<Singup /> } />
@@ -30,12 +31,12 @@ function App() {
   <Route path="Inbox" exact element={<Inbox />} />
    <Route path='/Inbox/:id' element={ <ReadMsg /> } /> 
    <Route path='/Sent' element={<SentBox />} />
+   <Route path='Sent/:id' element={<ReadSent  />} />
    <Route path='/Compose' element={<ComposeMail />} />
   
  
   </Routes>
-   {/* {isAuth && <p>numbers {Number}</p> }
-  {isAuth && <p>Logout</p> } */}
+  
 
   </>);
 }
