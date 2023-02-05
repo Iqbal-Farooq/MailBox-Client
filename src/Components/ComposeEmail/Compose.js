@@ -3,10 +3,15 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axios from "axios";
 import classes from './Compose.module.css';
+import { useSelector } from "react-redux";
+import Welcome from "../MailComponents/Welcome";
 
 const ComposeMail = () => {
   const Toref = useRef();
   const SubjectRef = useRef();
+   const loggedInEmail = localStorage.getItem('email');
+    let newMAil=loggedInEmail.replace('@', '').replace('.','')
+   console.log("LogedinEMEIL>>>",newMAil);
   let bodyText;
 
   const EditorStateChangeHandler = (event) => {
@@ -19,24 +24,44 @@ const ComposeMail = () => {
     const enteredSubjectref = SubjectRef.current.value;
 
     const mailData = {
-      to: enteredToref,
+      from: newMAil,
       subject: enteredSubjectref,
       body: bodyText,
+      dot:true,
     };
+      const toFormattedEmail = enteredToref.replace('@', '').replace('.','');
+      
      try {
+      console.log(toFormattedEmail)
       const response = await axios.post(
-        `https://mailbox-cff96-default-rtdb.firebaseio.com//Data.json`,mailData);
+        `https://mailbox-cff96-default-rtdb.firebaseio.com/${toFormattedEmail}Data.json`,mailData);
         let data=await response
 
          console.log(data);
     } catch (err) {
       console.log(err);
     }
-    console.log(mailData);
+
+    try{
+     const response = await axios.post(
+        `https://mailbox-cff96-default-rtdb.firebaseio.com/${newMAil}Data.json`,mailData);
+        let data=await response
+
+         console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+
+   
   }
 
-  return (
-   
+
+
+  return (<>
+
+ 
+   <Welcome />
 
      <div className={classes.wrapper1} >
            <div className={classes.wrapper}>
@@ -62,6 +87,7 @@ const ComposeMail = () => {
         </form>
     </div>
     </div>
+     </>
   );
 };
 

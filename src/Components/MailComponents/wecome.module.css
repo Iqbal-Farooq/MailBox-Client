@@ -1,0 +1,30 @@
+.wrapper1 {
+    display: flex;
+    
+    justify-content:center;
+    min-height: 5vh;
+    background-color:brown;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content:space-evenly;
+     margin-top: 15px;
+    width: 100%;
+    font-size: large;
+    font-weight: bold;
+    
+   
+}
+.button{
+    width:5em;
+    /* height: 2em; */
+    color:deepskyblue;
+ 
+    background:none;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+        font-weight: bold;
+}

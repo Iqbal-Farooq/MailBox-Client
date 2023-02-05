@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Login from "./Components/Auth/Login";
+import Welcome from "./Components/MailComponents/Welcome";
+import Singup from "./Components/Auth/Signup";
+import Mailbox from "./Components/RecivedMails/Mailbox";
+import { useSelector } from "react-redux";
+import Inbox from "./Components/RecivedMails/Inbox";
+import ReadMsg from "./Components/RecivedMails/Rec";
+import SentBox from "./Components/RecivedMails/Sent";
+import { inboxActions } from "./Components/Redux/Inbox";
+import ComposeMail from "./Components/ComposeEmail/Compose";
+
+
+
+import { Route,Redirect,Routes, Link} from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const isAuth=useSelector(state=>state.auth.islogin);
+  const Number=useSelector(state=>state.inbox.unRead);
+  console.log("LOHIM",isAuth)
+  return (<>  
+  {/* {isAuth &&<Link to='/Mailbox'> Mailbox</Link>} */}
+  
+  <Routes> 
+  <Route path="/Signup" element={<Singup /> } />
+  <Route path="/" element={<Login />} />
+  <Route path="/Welcome" exact element={<Welcome />} />
+  <Route path="/Mailbox" exact element={<Mailbox />}  />
+  <Route path="Inbox" exact element={<Inbox />} />
+   <Route path='/Inbox/:id' element={ <ReadMsg /> } /> 
+   <Route path='/Sent' element={<SentBox />} />
+   <Route path='/Compose' element={<ComposeMail />} />
+  
+ 
+  </Routes>
+   {/* {isAuth && <p>numbers {Number}</p> }
+  {isAuth && <p>Logout</p> } */}
+
+  </>);
 }
 
 export default App;

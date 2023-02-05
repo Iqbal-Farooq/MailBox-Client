@@ -1,0 +1,38 @@
+.wrapper1 {
+    display: flex;
+
+    justify-content: center;
+    margin-top: 3px;
+    min-height: 5vh;
+    width: 30%;
+    
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content:space-around;
+    margin-top: 15px;
+    width: 100%;
+    font-size: large;
+    font-weight: bold;
+
+}
+.btn {
+    position: relative;
+    width:30%;
+    height: 45px;
+    color: white;
+    border: 2px solid black;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor:pointer;
+    background-color:saddlebrown;
+    font-weight: 500;
+    transition: 0.5s;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

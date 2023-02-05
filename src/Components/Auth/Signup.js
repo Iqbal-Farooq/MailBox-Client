@@ -1,4 +1,4 @@
-import './signup.css'
+import classes from'./signup.module.css'
 import { useState,useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 const Singup=()=>{
@@ -67,25 +67,25 @@ const Singup=()=>{
 
     return(<>
        
-        <div className='wrapper1' >
-           <div className="wrapper">
+        <div className={classes.wrapper1} >
+           <div className={classes.wrapper}>
               <form onSubmit={register} >
                 <h2>Sign-Up</h2>
-                  <div className="input-box">
+                  <div className={classes.input}>
 
                  <input type="email" placeholder="email" value={email} onChange={EmailInput} required />
                </div>
-                   <div className="input-box">
+                   <div className={classes.input}>
                
                          <input type="password" placeholder="Password" value={password} onChange={PasswordInput} />
                     </div>
-                     <div className="input-box">
+                     <div className={classes.input}>
                
                          <input type="password" placeholder="Confirm-Password" value={confirm} onChange={ConfirmHandler}  />
                     </div>
                         
-                            <button type="submit" disabled={!isValid} >Signup</button>
-                           <div className="registration-link">
+                            <button className={classes.button} type="submit" disabled={!isValid} >Signup</button>
+                           <div className={classes.registration}>
                               <p> have an account? <span onClick={NavigateHandler}>Login</span></p>
              </div>
         </form>

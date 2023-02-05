@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from 'axios';
-
+import classes from './signup.module.css'
 import { useDispatch } from 'react-redux';
 import { AuthActions } from "../Redux/Authentication";
 
@@ -37,7 +37,7 @@ const Login=()=>{
         const LoginEmail=res.data.email
       
         dispatch(AuthActions.login({token,LoginEmail}));
-        navigate("/Welcome")
+        navigate("/Welcome");
 
     
 
@@ -47,24 +47,24 @@ const Login=()=>{
   }
 
     return (<>
-         <div className='wrapper1' >
-           <div className="wrapper">
+         <div className={classes.wrapper1} >
+           <div className={classes.wrapper}>
               <form onSubmit={LoginHandler} >
                 <h2>Log in</h2>
-                  <div className="input-box">
+                  <div className={classes.input}>
 
                  <input type="email" placeholder="email" ref={EmailRef}  required />
                </div>
-                   <div className="input-box">
+                   <div className={classes.input}>
                
                          <input type="password" placeholder="Password"  ref={PasswordRef} required/>
                     </div>
                     
-                          <div className="forgot-password">
+                          <div className={classes.forgot}>
                                <span>Forgot Password?</span>
                       </div>
-                            <button type="submit" >Login</button>
-                           <div className="registration-link">
+                            <button  className={classes.button} type="submit" >Login</button>
+                           <div className={classes.registration}>
                               <p> don't have an account? <span onClick={NavigateHandler}>signup</span></p>
              </div>
         </form>

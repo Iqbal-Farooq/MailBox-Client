@@ -5,6 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   emails: [],
+  sentemails:[],
+  unRead:0
 };
 
 const inboxSlice = createSlice({
@@ -14,6 +16,13 @@ const inboxSlice = createSlice({
     EmailFetch(state, action) {
       state.emails = action.payload;
     },
+    Sentemails(state,action){
+      state.sentemails=action.payload;
+    },
+     updateUnread(state,action){
+            state.unRead=action.payload
+        }
+     
   },
 });
 
