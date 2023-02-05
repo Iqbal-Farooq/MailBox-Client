@@ -11,6 +11,7 @@ import Welcome from "../MailComponents/Welcome";
 
 const ReceiveEmails = () => {
   const[md,setMd]=useState([]);
+   
   const [singleEmail, setSingleEmail] = useState(false);
   const emails = useSelector((state) => state.inbox.emails);
   const unred=useSelector((state)=>state.inbox.unRead)
@@ -19,8 +20,13 @@ const ReceiveEmails = () => {
   const dispatch = useDispatch();
   const loggedInEmail = localStorage.getItem('email')
   const FormatedEmail=loggedInEmail.replace('@', '').replace('.','')
+  console.log(" Emil" , FormatedEmail)
+  
+  
+
    let noOfUnread=0;
   let data=[]
+
    
      async function GetData(){
          try {
@@ -49,12 +55,20 @@ const ReceiveEmails = () => {
   useEffect(() => {
    
     GetData();
-  }, [dispatch,loggedInEmail]);
+  }, []);
 
-   const onSingleEmailClickHandler = (email) => {
-    setSingleEmail(email);
-    // console.log(email)
-  };
+   
+
+  async function DeleteHandler(id){
+    console.log(id);
+    const res= await axios.delete(`https://mailbox-cff96-default-rtdb.firebaseio.com/${FormatedEmail}Data/${id}.json`);
+    let data=await res;
+    console.log(data);
+    
+    console.log('deleted')
+    GetData();
+
+  }
 
   return (
     <>
@@ -68,18 +82,19 @@ const ReceiveEmails = () => {
         <ul>
           {emails!==null && emails.map((email) => {
             return (
-             <Link to={`/Inbox/${email.id}`}> <li className={classes.input}>
+              <li className={classes.input}>
               {email.dot && <div className={classes.dot}/>} 
-                <span style={{ marginRight: "1em" }}>
+               <Link to={`/Inbox/${email.id}`}> <span style={{ marginRight: "1em" }}>
                  {email.from}
                 </span>
                 <span style={{ marginRight: "1em" }}>
                   {email.subject}
                 </span>
                
-                <span>message</span>
-               
-              </li></Link>
+                <span>message</span></Link>
+                <button className={classes.button} onClick={()=>DeleteHandler(email.id)}>Delete</button>
+                
+              </li>
             );
           })}
         </ul>

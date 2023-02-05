@@ -27,7 +27,7 @@ const ReadMsg = () => {
      useEffect(()=>{
       const fetchData=async ()=>{
 
-        const response=await fetch(`https://mailbox-cff96-default-rtdb.firebaseio.com/${myEmail}/${id}/Data.json`,{
+        const response=await fetch(`https://mailbox-cff96-default-rtdb.firebaseio.com/${myEmail}Data/${id}.json`,{
           method:'PATCH',
           body:JSON.stringify({
             dot:false

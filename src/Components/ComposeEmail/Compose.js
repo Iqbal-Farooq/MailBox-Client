@@ -42,15 +42,15 @@ const ComposeMail = () => {
       console.log(err);
     }
 
-    try{
-     const response = await axios.post(
-        `https://mailbox-cff96-default-rtdb.firebaseio.com/${newMAil}Data.json`,mailData);
-        let data=await response
+    // try{
+    //  const response = await axios.post(
+    //     `https://mailbox-cff96-default-rtdb.firebaseio.com/${newMAil}Data.json`,mailData);
+    //     let data=await response
 
-         console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
+    //      console.log(data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
 
    
