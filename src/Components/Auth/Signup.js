@@ -86,7 +86,7 @@ const Singup=()=>{
                         
                             <button className={classes.button} type="submit" disabled={!isValid} >Signup</button>
                            <div className={classes.registration}>
-                              <p> have an account? <span onClick={NavigateHandler}>Login</span></p>
+                              <p> have an account ? <span className={classes.change} onClick={NavigateHandler}>Login</span></p>
              </div>
         </form>
     </div>

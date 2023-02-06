@@ -5,6 +5,7 @@ import axios from "axios";
 import classes from './Compose.module.css';
 import { useSelector } from "react-redux";
 import Welcome from "../MailComponents/Welcome";
+import useFetch from "../RecivedMails/Custom";
 
 const ComposeMail = () => {
   const Toref = useRef();
@@ -55,6 +56,14 @@ const ComposeMail = () => {
     } catch (err) {
       console.log(err);
     }
+    
+    // const [data]=useFetch(`https://mailbox-cff96-default-rtdb.firebaseio.com/${toFormattedEmail}inbox.json`,{
+    //   method:"POST",
+    //   body:JSON.stringify((mailData))
+    // }).then(res=>{
+    //   console.log(res)
+
+    // }).catch(err=>console.log(err))
 
 
    
@@ -84,10 +93,9 @@ const ComposeMail = () => {
                     </div>
                     <label className={classes.to}>Message</label>
                     <div className={classes.registration}>  <Editor onEditorStateChange={EditorStateChangeHandler} /></div>
-                   
-                        
+
                             <button  className={classes.button} type="submit" onClick={SendHandler} >Send</button>
-                           
+ 
         </form>
     </div>
     </div>

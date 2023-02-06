@@ -65,7 +65,7 @@ const Login=()=>{
                       </div>
                             <button  className={classes.button} type="submit" >Login</button>
                            <div className={classes.registration}>
-                              <p> don't have an account? <span onClick={NavigateHandler}>signup</span></p>
+                              <p> don't have an account ? <span className={classes.change} onClick={NavigateHandler}>signup</span></p>
              </div>
         </form>
     </div>
